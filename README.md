@@ -24,9 +24,9 @@ The library provides the location of these directories by leveraging the mechani
 This library is written in Rust, and supports Linux, Redox, macOS and Windows.
 Other platforms are also supported; they use the Linux conventions.
 
-_dirs_, the low-level sister library, is available at [dirs-rs](https://github.com/soc/dirs-rs).
+_dirs_, the low-level sister library, is available at [dirs-rs](https://codeberg.org/dirs/dirs-rs).
 
-A version of this library running on the JVM is provided by [directories-jvm](https://github.com/soc/directories-jvm).
+A version of this library running on the JVM is provided by [directories-jvm](https://codeberg.org/dirs/directories-jvm).
 
 ## Usage
 
@@ -237,7 +237,7 @@ cargo build --target=x86_64-unknown-redox
 ### 3
 
 - **BREAKING CHANGE** The behavior of the `BaseDirs::config_dir` and `ProjectDirs::config_dir`
-    on macOS has been adjusted (thanks to [everyone involved](https://github.com/dirs-dev/directories-rs/issues/62)):
+    on macOS has been adjusted (thanks to [everyone involved](https://codeberg.org/dirs/directories-rs/issues/62)):
   - The existing `config_dir` functions have been changed to return the `Application Support`
     directory on macOS, as suggested by Apple documentation.
   - The behavior of the `config_dir` functions on non-macOS platforms has not been changed.

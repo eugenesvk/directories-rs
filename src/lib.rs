@@ -182,11 +182,11 @@ impl BaseDirs {
     }
     /// Returns the path to the user's cache directory.
     ///
-    /// |Platform | Value                               | Example                      |
-    /// | ------- | ----------------------------------- | ---------------------------- |
-    /// | Linux   | `$XDG_CACHE_HOME` or `$HOME`/.cache | /home/alice/.cache           |
-    /// | macOS   | `$HOME`/Library/Caches              | /Users/Alice/Library/Caches  |
-    /// | Windows | `{FOLDERID_LocalAppData}`           | C:\Users\Alice\AppData\Local |
+    /// |Platform | Value                                          | Example                      |
+    /// | ------- | ---------------------------------------------- | ---------------------------- |
+    /// | Linux   | `$XDG_CACHE_HOME` or `$HOME`/.cache            | /home/alice/.cache           |
+    /// | macOS   | `$XDG_CACHE_HOME` or `$HOME`/Library/Caches    | /Users/Alice/Library/Caches  |
+    /// | Windows | `$XDG_CACHE_HOME` or `{FOLDERID_LocalAppData}` | C:\Users\Alice\AppData\Local |
     pub fn cache_dir(&self) -> &Path {
         self.cache_dir.as_path()
     }
@@ -435,11 +435,11 @@ impl ProjectDirs {
     }
     /// Returns the path to the project's cache directory.
     ///
-    /// |Platform | Value                                                                 | Example                                             |
-    /// | ------- | --------------------------------------------------------------------- | --------------------------------------------------- |
-    /// | Linux   | `$XDG_CACHE_HOME`/`_project_path_` or `$HOME`/.cache/`_project_path_` | /home/alice/.cache/barapp                           |
-    /// | macOS   | `$HOME`/Library/Caches/`_project_path_`                               | /Users/Alice/Library/Caches/com.Foo-Corp.Bar-App    |
-    /// | Windows | `{FOLDERID_LocalAppData}`\\`_project_path_`\\cache                    | C:\Users\Alice\AppData\Local\Foo Corp\Bar App\cache |
+    /// |Platform | Value                                                                                    | Example                                             |
+    /// | ------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------- |
+    /// | Linux   | `$XDG_CACHE_HOME`/`_project_path_` or `$HOME`/.cache/`_project_path_`                    | /home/alice/.cache/barapp                           |
+    /// | macOS   | `$XDG_CACHE_HOME`/`_project_path_` or `$HOME`/Library/Caches/`_project_path_`            | /Users/Alice/Library/Caches/com.Foo-Corp.Bar-App    |
+    /// | Windows | `$XDG_CACHE_HOME`/`_project_path_` or `{FOLDERID_LocalAppData}`\\`_project_path_`\\cache | C:\Users\Alice\AppData\Local\Foo Corp\Bar App\cache |
     pub fn cache_dir(&self) -> &Path {
         self.cache_dir.as_path()
     }

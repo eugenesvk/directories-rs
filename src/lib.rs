@@ -192,21 +192,21 @@ impl BaseDirs {
     }
     /// Returns the path to the user's config directory.
     ///
-    /// |Platform | Value                                 | Example                                  |
-    /// | ------- | ------------------------------------- | ---------------------------------------- |
-    /// | Linux   | `$XDG_CONFIG_HOME` or `$HOME`/.config | /home/alice/.config                      |
-    /// | macOS   | `$HOME`/Library/Application Support   | /Users/Alice/Library/Application Support |
-    /// | Windows | `{FOLDERID_RoamingAppData}`           | C:\Users\Alice\AppData\Roaming           |
+    /// |Platform | Value                                                       | Example                                  |
+    /// | ------- | ------------------------------------- --------------------- | ---------------------------------------- |
+    /// | Linux   | `$XDG_CONFIG_HOME` or `$HOME`/.config                       | /home/alice/.config                      |
+    /// | macOS   | `$XDG_CONFIG_HOME` or `$HOME`/Library/Application Support   | /Users/Alice/Library/Application Support |
+    /// | Windows | `$XDG_CONFIG_HOME` or `{FOLDERID_RoamingAppData}`           | C:\Users\Alice\AppData\Roaming           |
     pub fn config_dir(&self) -> &Path {
         self.config_dir.as_path()
     }
     /// Returns the path to the user's local config directory.
     ///
-    /// |Platform | Value                                 | Example                                  |
-    /// | ------- | ------------------------------------- | ---------------------------------------- |
-    /// | Linux   | `$XDG_CONFIG_HOME` or `$HOME`/.config | /home/alice/.config                      |
-    /// | macOS   | `$HOME`/Library/Application Support   | /Users/Alice/Library/Application Support |
-    /// | Windows | `{FOLDERID_LocalAppData}`           | C:\Users\Alice\AppData\Local               |
+    /// |Platform | Value                                                     | Example                                  |
+    /// | ------- | --------------------------------------------------------- | ---------------------------------------- |
+    /// | Linux   | `$XDG_CONFIG_HOME` or `$HOME`/.config                     | /home/alice/.config                      |
+    /// | macOS   | `$XDG_CONFIG_HOME` or `$HOME`/Library/Application Support | /Users/Alice/Library/Application Support |
+    /// | Windows | `{FOLDERID_LocalAppData}`                                 | C:\Users\Alice\AppData\Local             |
     pub fn config_local_dir(&self) -> &Path {
         self.config_local_dir.as_path()
     }
@@ -242,11 +242,11 @@ impl BaseDirs {
     }
     /// Returns the path to the user's preference directory.
     ///
-    /// |Platform | Value                                 | Example                          |
-    /// | ------- | ------------------------------------- | -------------------------------- |
-    /// | Linux   | `$XDG_CONFIG_HOME` or `$HOME`/.config | /home/alice/.config              |
-    /// | macOS   | `$HOME`/Library/Preferences           | /Users/Alice/Library/Preferences |
-    /// | Windows | `{FOLDERID_RoamingAppData}`           | C:\Users\Alice\AppData\Roaming   |
+    /// |Platform | Value                                             | Example                          |
+    /// | ------- | ------------------------------------------------- | -------------------------------- |
+    /// | Linux   | `$XDG_CONFIG_HOME` or `$HOME`/.config             | /home/alice/.config              |
+    /// | macOS   | `$HOME`/Library/Preferences                       | /Users/Alice/Library/Preferences |
+    /// | Windows | `$XDG_CONFIG_HOME` or `{FOLDERID_RoamingAppData}` | C:\Users\Alice\AppData\Roaming   |
     pub fn preference_dir(&self) -> &Path {
         self.preference_dir.as_path()
     }
@@ -445,21 +445,21 @@ impl ProjectDirs {
     }
     /// Returns the path to the project's config directory.
     ///
-    /// |Platform | Value                                                                   | Example                                                        |
-    /// | ------- | ----------------------------------------------------------------------- | -------------------------------------------------------------- |
-    /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_` | /home/alice/.config/barapp                                     |
-    /// | macOS   | `$HOME`/Library/Application Support/`_project_path_`                    | /Users/Alice/Library/Application Support/com.Foo-Corp.Bar-App  |
-    /// | Windows | `{FOLDERID_RoamingAppData}`\\`_project_path_`\\config                   | C:\Users\Alice\AppData\Roaming\Foo Corp\Bar App\config         |
+    /// |Platform | Value                                                                                        | Example                                                        |
+    /// | ------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_`                      | /home/alice/.config/barapp                                     |
+    /// | macOS   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/Library/Application Support/`_project_path_`  | /Users/Alice/Library/Application Support/com.Foo-Corp.Bar-App  |
+    /// | Windows | `$XDG_CONFIG_HOME`/`_project_path_` or `{FOLDERID_RoamingAppData}`\\`_project_path_`\\config | C:\Users\Alice\AppData\Roaming\Foo Corp\Bar App\config         |
     pub fn config_dir(&self) -> &Path {
         self.config_dir.as_path()
     }
     /// Returns the path to the project's local config directory.
     ///
-    /// |Platform | Value                                                                   | Example                                                        |
-    /// | ------- | ----------------------------------------------------------------------- | -------------------------------------------------------------- |
-    /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_` | /home/alice/.config/barapp                                     |
-    /// | macOS   | `$HOME`/Library/Application Support/`_project_path_`                    | /Users/Alice/Library/Application Support/com.Foo-Corp.Bar-App  |
-    /// | Windows | `{FOLDERID_LocalAppData}`\\`_project_path_`\\config                     | C:\Users\Alice\AppData\Local\Foo Corp\Bar App\config           |
+    /// |Platform | Value                                                                                       | Example                                                        |
+    /// | ------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_`                     | /home/alice/.config/barapp                                     |
+    /// | macOS   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/Library/Application Support/`_project_path_` | /Users/Alice/Library/Application Support/com.Foo-Corp.Bar-App  |
+    /// | Windows | `{FOLDERID_LocalAppData}`\\`_project_path_`\\config                                         | C:\Users\Alice\AppData\Local\Foo Corp\Bar App\config           |
     pub fn config_local_dir(&self) -> &Path {
         self.config_local_dir.as_path()
     }
@@ -485,11 +485,11 @@ impl ProjectDirs {
     }
     /// Returns the path to the project's preference directory.
     ///
-    /// |Platform | Value                                                                   | Example                                                |
-    /// | ------- | ----------------------------------------------------------------------- | ------------------------------------------------------ |
-    /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_` | /home/alice/.config/barapp                             |
-    /// | macOS   | `$HOME`/Library/Preferences/`_project_path_`                            | /Users/Alice/Library/Preferences/com.Foo-Corp.Bar-App  |
-    /// | Windows | `{FOLDERID_RoamingAppData}`\\`_project_path_`\\config                   | C:\Users\Alice\AppData\Roaming\Foo Corp\Bar App\config |
+    /// |Platform | Value                                                                                        | Example                                                |
+    /// | ------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+    /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_`                      | /home/alice/.config/barapp                             |
+    /// | macOS   | `$HOME`/Library/Preferences/`_project_path_`                                                 | /Users/Alice/Library/Preferences/com.Foo-Corp.Bar-App  |
+    /// | Windows | `$XDG_CONFIG_HOME`/`_project_path_` or `{FOLDERID_RoamingAppData}`\\`_project_path_`\\config | C:\Users\Alice\AppData\Roaming\Foo Corp\Bar App\config |
     pub fn preference_dir(&self) -> &Path {
         self.preference_dir.as_path()
     }

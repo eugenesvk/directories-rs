@@ -14,9 +14,9 @@ pub fn base_dirs() -> Option<BaseDirs> {
     let data_local_dir = dirs_sys::known_folder_local_app_data();
     if let (Some(home_dir), Some(data_dir), Some(data_local_dir)) = (home_dir, data_dir, data_local_dir) {
         let cache_dir        = env::var_os("XDG_CACHE_HOME") .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| data_local_dir.clone());
-        let config_dir       = data_dir.clone();
+        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| data_dir.clone());
         let config_local_dir = data_local_dir.clone();
-        let preference_dir   = data_dir.clone();
+        let preference_dir   = config_dir.clone();
 
         let base_dirs = BaseDirs {
             home_dir:         home_dir,
@@ -73,7 +73,7 @@ pub fn project_dirs_from_path(project_path: PathBuf) -> Option<ProjectDirs> {
         let app_data_roaming = app_data_roaming.join(&project_path);
         let cache_dir        = env::var_os("XDG_CACHE_HOME") .and_then(dirs_sys::is_absolute_path).map_or_else(|| app_data_local.join("cache"), |p| p.join(&project_path));
         let data_local_dir   = app_data_local.join("data");
-        let config_dir       = app_data_roaming.join("config");
+        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).map_or_else(|| app_data_roaming.join("config"), |p| p.join(&project_path));
         let config_local_dir = app_data_local.join("config");
         let data_dir         = app_data_roaming.join("data");
         let preference_dir   = config_dir.clone();

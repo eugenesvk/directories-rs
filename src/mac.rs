@@ -10,7 +10,7 @@ use ProjectDirs;
 pub fn base_dirs() -> Option<BaseDirs> {
     if let Some(home_dir)    = dirs_sys::home_dir() {
         let cache_dir        = env::var_os("XDG_CACHE_HOME") .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join("Library/Caches"));
-        let config_dir       = home_dir.join("Library/Application Support");
+        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join("Library/Application Support"));
         let config_local_dir = config_dir.clone();
         let data_dir         = config_dir.clone();
         let data_local_dir   = config_dir.clone();
@@ -66,7 +66,7 @@ pub fn user_dirs() -> Option<UserDirs> {
 pub fn project_dirs_from_path(project_path: PathBuf) -> Option<ProjectDirs> {
     if let Some(home_dir)    = dirs_sys::home_dir() {
         let cache_dir        = env::var_os("XDG_CACHE_HOME") .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join("Library/Caches")).join(&project_path);
-        let config_dir       = home_dir.join("Library/Application Support").join(&project_path);
+        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join("Library/Application Support")).join(&project_path);
         let config_local_dir = config_dir.clone();
         let data_dir         = config_dir.clone();
         let data_local_dir   = config_dir.clone();

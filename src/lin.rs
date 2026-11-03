@@ -7,17 +7,27 @@ use crate::BaseDirs;
 use crate::UserDirs;
 use crate::ProjectDirs;
 
+
+
+const d_cache: &str = ".cache"      ;
+const d_cfg  : &str = ".config"     ;
+const d_data : &str = ".local/share";
+
+
+
+
+
 pub fn base_dirs() -> Option<BaseDirs> {
     if let Some(home_dir)    = dirs_sys::home_dir() {
-        let cache_dir        = env::var_os("XDG_CACHE_HOME") .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".cache"));
-        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".config"));
+        let cache_dir        = env::var_os("XDG_CACHE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cache));
+        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cfg));
         let config_local_dir = config_dir.clone();
-        let data_dir         = env::var_os("XDG_DATA_HOME")  .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/share"));
+        let data_dir         = env::var_os("XDG_DATA_HOME"  ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_data));
         let data_local_dir   = data_dir.clone();
         let preference_dir   = config_dir.clone();
         let runtime_dir      = env::var_os("XDG_RUNTIME_DIR").and_then(dirs_sys::is_absolute_path);
-        let state_dir        = env::var_os("XDG_STATE_HOME") .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/state"));
-        let executable_dir   = env::var_os("XDG_BIN_HOME")   .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/bin"));
+        let state_dir        = env::var_os("XDG_STATE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/state"));
+        let executable_dir   = env::var_os("XDG_BIN_HOME"   ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/bin"));
 
         let base_dirs = BaseDirs {
             home_dir:         home_dir,
@@ -63,14 +73,14 @@ pub fn user_dirs() -> Option<UserDirs> {
 
 pub fn project_dirs_from_path(project_path: PathBuf) -> Option<ProjectDirs> {
     if let Some(home_dir)    = dirs_sys::home_dir() {
-        let cache_dir        = env::var_os("XDG_CACHE_HOME") .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".cache")).join(&project_path);
-        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".config")).join(&project_path);
+        let cache_dir        = env::var_os("XDG_CACHE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cache)).join(&project_path);
+        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cfg  )).join(&project_path);
         let config_local_dir = config_dir.clone();
-        let data_dir         = env::var_os("XDG_DATA_HOME")  .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/share")).join(&project_path);
+        let data_dir         = env::var_os("XDG_DATA_HOME"  ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_data )).join(&project_path);
         let data_local_dir   = data_dir.clone();
         let preference_dir   = config_dir.clone();
         let runtime_dir      = env::var_os("XDG_RUNTIME_DIR").and_then(dirs_sys::is_absolute_path).map(|o| o.join(&project_path));
-        let state_dir        = env::var_os("XDG_STATE_HOME") .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/state")).join(&project_path);
+        let state_dir        = env::var_os("XDG_STATE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/state")).join(&project_path);
 
         let project_dirs = ProjectDirs {
             project_path:     project_path,

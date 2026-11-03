@@ -1,0 +1,67 @@
+name: Rust Check+Clippy @ dev
+on:
+  push:
+    branches: [ dev ]
+    paths   : ['Cargo.*', 'src/**/*']
+  pull_request:
+    branches: [ dev ]
+    paths   : ['Cargo.*', 'src/**/*']
+  workflow_dispatch:
+    branches: ["main","dev"]
+    inputs:
+      logLevel:
+        description	: 'Log level'
+        required   	: true
+        default    	: 'warning'
+        type       	: choice
+        options    	:
+        - info
+        - warning
+        - debug
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS       : "-Dwarnings"
+jobs:
+  check-clippy:
+    name: Check+Clippy @ ${{ matrix.job.os }} → ${{ matrix.job.target }}
+    runs-on:             ${{ matrix.job.os }}
+    strategy:
+      matrix:
+        job:
+          - check : Linux
+            os    : ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+          - check : Windows
+            os    : ubuntu-latest
+            # os    : windows-latest
+            target: x86_64-pc-windows-msvc
+          - check : MacIntel
+            os    : ubuntu-latest
+            # os    : macos-15-intel
+            target: x86_64-apple-darwin
+          - check : Mac
+            os    : ubuntu-latest
+            # os    : macos-latest
+            target: aarch64-apple-darwin
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1    #v7.0.1 26-07
+        with:
+          persist-credentials: false
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 #v2.9.3 26-10
+        with:
+          shared-key: "persist-cross-job"
+          workspaces: ./
+
+      - run: rustup target add ${{ matrix.job.target }}
+      - name: Run check  no features
+        run : cargo check --workspace --all-targets --no-default-features --target ${{ matrix.job.target }}
+      - name: Run check all features
+        run : cargo check --workspace --all-targets --all-features        --target ${{ matrix.job.target }}
+
+      - run: rustup component add clippy
+      - name: Run clippy  no features
+        run : cargo clippy --all --no-default-features --target ${{ matrix.job.target }} -- --deny warnings
+      - name: Run clippy all features
+        run : cargo clippy --all --all-features        --target ${{ matrix.job.target }} -- --deny warnings

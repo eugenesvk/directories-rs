@@ -70,6 +70,8 @@ pub fn project_dirs_from_path(project_path: PathBuf) -> Option<ProjectDirs> {
     if let (Some(app_data_local), Some(app_data_roaming)) = (app_data_local, app_data_roaming) {
         let prj_data_local   = app_data_local  .join(&project_path);
         let prj_data_roaming = app_data_roaming.join(&project_path);
+        #[cfg(feature="cli")]
+        let home_dir = dirs_sys::known_folder_profile()?;
         apply_attr_s!{#[cfg(    feature="cli") ]
         let cache_dir        = var_os("XDG_CACHE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cache)).join(&project_path);
         let config_dir       = var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cfg  )).join(&project_path);

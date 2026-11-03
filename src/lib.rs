@@ -16,6 +16,7 @@
 
 #![deny(missing_docs)]
 
+mod helper;
 use std::path::Path;
 use std::path::PathBuf;
 

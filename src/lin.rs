@@ -101,7 +101,8 @@ fn trim_and_lowercase_then_replace_spaces(name: &str, replacement: &str) -> Stri
 
 #[cfg(test)]
 mod tests {
-    use lin::trim_and_lowercase_then_replace_spaces;
+    use crate::BaseDirs;
+    use crate::lin::trim_and_lowercase_then_replace_spaces;
 
     #[test]
     fn test_trim_and_lowercase_then_replace_spaces() {
@@ -128,7 +129,7 @@ mod tests {
 
     #[test]
     fn test_file_user_dirs_exists() {
-        let base_dirs      = ::BaseDirs::new();
+        let base_dirs      = BaseDirs::new();
         let user_dirs_file = base_dirs.unwrap().config_dir().join("user-dirs.dirs");
         println!("{:?} exists: {:?}", user_dirs_file, user_dirs_file.exists());
     }

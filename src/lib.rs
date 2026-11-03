@@ -441,14 +441,17 @@ impl ProjectDirs {
 
 #[cfg(test)]
 mod tests {
-    #[test] fn test_base_dirs() { println!("BaseDirs::new())\n{:?}", ::BaseDirs::new()); }
-    #[test] fn test_user_dirs() { println!("UserDirs::new())\n{:?}", ::UserDirs::new()); }
+    use crate::BaseDirs;
+    use crate::UserDirs;
+    use crate::ProjectDirs;
+    #[test] fn test_base_dirs() { println!("BaseDirs::new())\n{:?}", BaseDirs::new()); }
+    #[test] fn test_user_dirs() { println!("UserDirs::new())\n{:?}", UserDirs::new()); }
     #[test] fn test_project_dirs() {
-        let proj_dirs = ::ProjectDirs::from("qux", "FooCorp", "BarApp");
+        let proj_dirs = ProjectDirs::from("qux", "FooCorp", "BarApp");
         println!("ProjectDirs::from(\"qux\", \"FooCorp\", \"BarApp\")\n{:?}", proj_dirs);
-        let proj_dirs = ::ProjectDirs::from("qux.zoo", "Foo Corp", "Bar-App");
+        let proj_dirs = ProjectDirs::from("qux.zoo", "Foo Corp", "Bar-App");
         println!("ProjectDirs::from(\"qux.zoo\", \"Foo Corp\", \"Bar-App\")\n{:?}", proj_dirs);
-        let proj_dirs = ::ProjectDirs::from("com", "Foo Corp.", "Bar App");
+        let proj_dirs = ProjectDirs::from("com", "Foo Corp.", "Bar App");
         println!("ProjectDirs::from(\"com\", \"Foo Corp.\", \"Bar App\")\n{:?}", proj_dirs);
     }
 }

@@ -3,9 +3,9 @@ extern crate dirs_sys;
 use std::env;
 use std::path::PathBuf;
 
-use BaseDirs;
-use UserDirs;
-use ProjectDirs;
+use crate::BaseDirs;
+use crate::UserDirs;
+use crate::ProjectDirs;
 
 pub fn base_dirs() -> Option<BaseDirs> {
     if let Some(home_dir)    = dirs_sys::home_dir() {

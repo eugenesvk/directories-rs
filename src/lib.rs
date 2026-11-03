@@ -1,3 +1,5 @@
+#![cfg_attr(not(debug_assertions),allow(non_snake_case,non_upper_case_globals,non_camel_case_types,uncommon_codepoints))]
+#![cfg_attr(    debug_assertions ,allow(non_snake_case,non_upper_case_globals,non_camel_case_types,uncommon_codepoints,unused_imports,unused_mut,unused_variables,dead_code,unused_assignments,unused_macros))]
 //! The _directories_ crate is
 //!
 //! - a tiny library with a minimal API (3 structs, 4 factory functions, getters)

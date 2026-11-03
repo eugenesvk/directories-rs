@@ -2,12 +2,13 @@ extern crate dirs_sys;
 
 use std::env::var_os;
 use std::path::PathBuf;
+use std::ffi::OsString;
 
 
 use crate::BaseDirs;
 use crate::UserDirs;
 use crate::ProjectDirs;
-use crate::apply_attr;
+use crate::{apply_attr,apply_attr_s};
 apply_attr!{#[cfg(    feature="cli") ]
 const d_cache: &str = ".cache"                     ;
 const d_cfg  : &str = ".config"                    ;
@@ -26,13 +27,13 @@ pub fn base_dirs() -> Option<BaseDirs> {
         let config_local_dir = config_dir.clone();
         let data_local_dir   = data_dir  .clone();
         let preference_dir   = home_dir.join("Library/Preferences");
-        apply_attr!{#[cfg(    feature="cli") ]
+        apply_attr_s!{#[cfg(    feature="cli") ]
         let executable_dir = Some(var_os("XDG_BIN_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_bin  )));}
-        apply_attr!{#[cfg(not(feature="cli"))]
-        let executable_dir = None;}
+        apply_attr_s!{#[cfg(not(feature="cli"))]
+        let executable_dir: Option<OsString> = None;}
 
         let base_dirs = BaseDirs {home_dir, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir,
-            executable_dir, preference_dir,
+            executable_dir:None, preference_dir,
             runtime_dir:      None,
             state_dir:        None  };
         Some(base_dirs)

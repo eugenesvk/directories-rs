@@ -12,6 +12,7 @@ use crate::ProjectDirs;
 const d_cache: &str = ".cache"      ;
 const d_cfg  : &str = ".config"     ;
 const d_data : &str = ".local/share";
+const d_bin  : &str = ".local/bin"  ;
 
 
 
@@ -27,7 +28,7 @@ pub fn base_dirs() -> Option<BaseDirs> {
         let preference_dir   = config_dir.clone();
         let runtime_dir      = var_os("XDG_RUNTIME_DIR").and_then(dirs_sys::is_absolute_path);
         let state_dir        = var_os("XDG_STATE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/state"));
-        let executable_dir   = var_os("XDG_BIN_HOME"   ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(".local/bin"));
+        let executable_dir   = var_os("XDG_BIN_HOME"   ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_bin  ));
 
         let base_dirs = BaseDirs {home_dir, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir,
             executable_dir:   Some(executable_dir),

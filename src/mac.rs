@@ -12,7 +12,7 @@ pub fn base_dirs() -> Option<BaseDirs> {
         let cache_dir        = env::var_os("XDG_CACHE_HOME") .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join("Library/Caches"));
         let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join("Library/Application Support"));
         let config_local_dir = config_dir.clone();
-        let data_dir         = env::var_os("XDG_DATA_HOME")  .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| config_dir.clone());
+        let data_dir         = env::var_os("XDG_DATA_HOME")  .and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join("Library/Application Support"));
         let data_local_dir   = data_dir.clone();
         let preference_dir   = home_dir.join("Library/Preferences");
 

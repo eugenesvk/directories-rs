@@ -1,14 +1,13 @@
 name: Rust
-
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+  workflow_dispatch:
+    branches: ["main","dev"]
 env:
   CARGO_TERM_COLOR: always
-
 jobs:
   build-and-test-on-linux:
     runs-on: ubuntu-latest

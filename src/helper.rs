@@ -4,3 +4,4 @@
 /// Same as `apply_attr`, but for `!attr`
 #[macro_export] macro_rules! apply_attrx {
     { #!$attr:tt $($it:item)* } => { $(#$attr $it)* }  }
+// `tt`=Token Tree

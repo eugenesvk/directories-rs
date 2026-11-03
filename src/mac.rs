@@ -11,7 +11,8 @@ use crate::apply_attr;
 apply_attr!{#[cfg(    feature="cli") ]
 const d_cache: &str = ".cache"                     ;
 const d_cfg  : &str = ".config"                    ;
-const d_data : &str = ".local/share"               ;}
+const d_data : &str = ".local/share"               ;
+const d_bin  : &str = ".local/bin"                 ;}
 apply_attr!{#[cfg(not(feature="cli"))]
 const d_cache: &str = "Library/Caches"             ;
 const d_cfg  : &str = "Library/Application Support";
@@ -25,10 +26,13 @@ pub fn base_dirs() -> Option<BaseDirs> {
         let config_local_dir = config_dir.clone();
         let data_local_dir   = data_dir  .clone();
         let preference_dir   = home_dir.join("Library/Preferences");
+        apply_attr!{#[cfg(    feature="cli") ]
+        let executable_dir = Some(var_os("XDG_BIN_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_bin  )));}
+        apply_attr!{#[cfg(not(feature="cli"))]
+        let executable_dir = None;}
 
         let base_dirs = BaseDirs {home_dir, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir,
-            executable_dir:   None,
-            preference_dir,
+            executable_dir, preference_dir,
             runtime_dir:      None,
             state_dir:        None  };
         Some(base_dirs)

@@ -214,11 +214,13 @@ impl BaseDirs {
     /// | Windows | `{FOLDERID_LocalAppData}`                               | C:\Users\Alice\AppData\Local             |
     pub fn data_local_dir(&self) -> &Path { self.data_local_dir.as_path() }
     /// Returns the path to the user's executable directory.<br>
-    /// |Platform | Value                                                            | Example                |
-    /// | ------- | ---------------------------------------------------------------- | ---------------------- |
-    /// | Linux   | `$XDG_BIN_HOME` or `$XDG_DATA_HOME`/../bin or `$HOME`/.local/bin | /home/alice/.local/bin |
-    /// | macOS   | –                                                                | –                      |
-    /// | Windows | –                                                                | –                      |
+    /// |Platform | Value                                                            | Example                   |
+    /// | ------- | ---------------------------------------------------------------- | ------------------------- |
+    /// | Linux   | `$XDG_BIN_HOME` or `$XDG_DATA_HOME`/../bin or `$HOME`/.local/bin | /home/alice/.local/bin    |
+    /// | macOS   | –                                                                | –                         |
+    /// | ↑ `cli` | `$XDG_BIN_HOME`                               `$HOME`/.local/bin | /Users/Alice/.local/bin   |
+    /// | Windows | –                                                                | –                         |
+    /// | ↑ `cli` | `$XDG_BIN_HOME`                  `{FOLDERID_Profile}`/.local/bin | C:\Users\Alice\.local/bin |
     pub fn executable_dir(&self) -> Option<&Path> { self.executable_dir.as_ref().map(|p| p.as_path()) }
     /// Returns the path to the user's preference directory.<br>
     /// |Platform | Value                                             | Example                          |

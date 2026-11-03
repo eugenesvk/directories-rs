@@ -33,7 +33,7 @@ pub fn base_dirs() -> Option<BaseDirs> {
         let cache_dir        = var_os("XDG_CACHE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| data_local_dir.clone());
         let config_dir       = var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| app_data_dir  .clone());
         let data_dir         = var_os("XDG_DATA_HOME"  ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| app_data_dir  .clone());
-        let executable_dir: Option<OsString> = None;}
+        let executable_dir: Option<PathBuf> = None;}
         let config_local_dir =                                                                                  data_local_dir.clone();
         let preference_dir   =                                                                                  config_dir    .clone();
 

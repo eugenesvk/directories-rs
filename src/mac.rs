@@ -30,7 +30,7 @@ pub fn base_dirs() -> Option<BaseDirs> {
         apply_attr_s!{#[cfg(    feature="cli") ]
         let executable_dir = Some(var_os("XDG_BIN_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_bin  )));}
         apply_attr_s!{#[cfg(not(feature="cli"))]
-        let executable_dir: Option<OsString> = None;}
+        let executable_dir: Option<PathBuf> = None;}
 
         let base_dirs = BaseDirs {home_dir, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir,
             executable_dir, preference_dir,

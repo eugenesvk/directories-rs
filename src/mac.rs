@@ -33,7 +33,7 @@ pub fn base_dirs() -> Option<BaseDirs> {
         let executable_dir: Option<OsString> = None;}
 
         let base_dirs = BaseDirs {home_dir, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir,
-            executable_dir:None, preference_dir,
+            executable_dir, preference_dir,
             runtime_dir:      None,
             state_dir:        None  };
         Some(base_dirs)

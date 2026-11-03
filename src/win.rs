@@ -56,22 +56,12 @@ pub fn user_dirs() -> Option<UserDirs> {
         let template_dir  = dirs_sys::known_folder_templates();
         let video_dir     = dirs_sys::known_folder_videos();
 
-        let user_dirs = UserDirs {
-            home_dir:     home_dir,
-            audio_dir:    audio_dir,
-            desktop_dir:  desktop_dir,
-            document_dir: document_dir,
-            download_dir: download_dir,
+        let user_dirs = UserDirs {home_dir,
+            audio_dir, desktop_dir, document_dir, download_dir,
             font_dir:     None,
-            picture_dir:  picture_dir,
-            public_dir:   public_dir,
-            template_dir: template_dir,
-            video_dir:    video_dir
-        };
+            picture_dir, public_dir, template_dir, video_dir  };
         Some(user_dirs)
-    } else {
-        None
-    }
+    } else { None }
 }
 
 pub fn project_dirs_from_path(project_path: PathBuf) -> Option<ProjectDirs> {

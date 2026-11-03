@@ -32,8 +32,7 @@ pub fn base_dirs() -> Option<BaseDirs> {
 
         let base_dirs = BaseDirs {home_dir, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir,
             executable_dir:   Some(executable_dir),
-            preference_dir:   preference_dir,
-            runtime_dir:      runtime_dir,
+            preference_dir, runtime_dir,
             state_dir:        Some(state_dir)  };
         Some(base_dirs)
     } else { None }
@@ -45,8 +44,7 @@ pub fn user_dirs() -> Option<UserDirs> {
         let font_dir  = data_dir.join("fonts");
         let mut user_dirs_map = dirs_sys::user_dirs(&home_dir);
 
-        let user_dirs = UserDirs {
-            home_dir:     home_dir,
+        let user_dirs = UserDirs {home_dir,
             audio_dir:    user_dirs_map.remove("MUSIC"),
             desktop_dir:  user_dirs_map.remove("DESKTOP"),
             document_dir: user_dirs_map.remove("DOCUMENTS"),

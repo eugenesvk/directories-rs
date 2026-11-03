@@ -221,7 +221,7 @@ impl BaseDirs {
     /// | ↑ `cli` | `$XDG_BIN_HOME`                               `$HOME`/.local/bin | /Users/Alice/.local/bin   |
     /// | Windows | –                                                                | –                         |
     /// | ↑ `cli` | `$XDG_BIN_HOME`                  `{FOLDERID_Profile}`/.local/bin | C:\Users\Alice\.local/bin |
-    pub fn executable_dir(&self) -> Option<&Path> { self.executable_dir.as_ref().map(|p| p.as_path()) }
+    pub fn executable_dir(&self) -> Option<&Path> { self.executable_dir.as_deref() }
     /// Returns the path to the user's preference directory.<br>
     /// |Platform | Value                                             | Example                          |
     /// | ------- | ------------------------------------------------- | -------------------------------- |
@@ -235,7 +235,7 @@ impl BaseDirs {
     /// | Linux   | `$XDG_RUNTIME_DIR` | /run/user/1001/ |
     /// | macOS   | –                  | –               |
     /// | Windows | –                  | –               |
-    pub fn runtime_dir(&self) -> Option<&Path> { self.runtime_dir.as_ref().map(|p| p.as_path()) }
+    pub fn runtime_dir(&self) -> Option<&Path> { self.runtime_dir.as_deref() }
     /// Returns the path to the user's state directory.
     ///
     /// The state directory contains data that should be retained between sessions (unlike the runtime
@@ -248,7 +248,7 @@ impl BaseDirs {
     /// | Linux   | `$XDG_STATE_HOME` or `$HOME`/.local/state | /home/alice/.local/state |
     /// | macOS   | –                                         | –                        |
     /// | Windows | –                                         | –                        |
-    pub fn state_dir(&self) -> Option<&Path> { self.state_dir.as_ref().map(|p| p.as_path()) }
+    pub fn state_dir(&self) -> Option<&Path> { self.state_dir.as_deref() }
 }
 
 impl UserDirs {
@@ -273,63 +273,63 @@ impl UserDirs {
     /// | Linux   | `XDG_MUSIC_DIR`    | /home/alice/Music    |
     /// | macOS   | `$HOME`/Music      | /Users/Alice/Music   |
     /// | Windows | `{FOLDERID_Music}` | C:\Users\Alice\Music |
-    pub fn audio_dir(&self) -> Option<&Path> { self.audio_dir.as_ref().map(|p| p.as_path()) }
+    pub fn audio_dir(&self) -> Option<&Path> { self.audio_dir.as_deref() }
     /// Returns the path to the user's desktop directory.<br>
     /// |Platform | Value                | Example                |
     /// | ------- | -------------------- | ---------------------- |
     /// | Linux   | `XDG_DESKTOP_DIR`    | /home/alice/Desktop    |
     /// | macOS   | `$HOME`/Desktop      | /Users/Alice/Desktop   |
     /// | Windows | `{FOLDERID_Desktop}` | C:\Users\Alice\Desktop |
-    pub fn desktop_dir(&self) -> Option<&Path> { self.desktop_dir.as_ref().map(|p| p.as_path()) }
+    pub fn desktop_dir(&self) -> Option<&Path> { self.desktop_dir.as_deref() }
     /// Returns the path to the user's document directory.<br>
     /// |Platform | Value                  | Example                  |
     /// | ------- | ---------------------- | ------------------------ |
     /// | Linux   | `XDG_DOCUMENTS_DIR`    | /home/alice/Documents    |
     /// | macOS   | `$HOME`/Documents      | /Users/Alice/Documents   |
     /// | Windows | `{FOLDERID_Documents}` | C:\Users\Alice\Documents |
-    pub fn document_dir(&self) -> Option<&Path> { self.document_dir.as_ref().map(|p| p.as_path()) }
+    pub fn document_dir(&self) -> Option<&Path> { self.document_dir.as_deref() }
     /// Returns the path to the user's download directory.<br>
     /// |Platform | Value                  | Example                  |
     /// | ------- | ---------------------- | ------------------------ |
     /// | Linux   | `XDG_DOWNLOAD_DIR`     | /home/alice/Downloads    |
     /// | macOS   | `$HOME`/Downloads      | /Users/Alice/Downloads   |
     /// | Windows | `{FOLDERID_Downloads}` | C:\Users\Alice\Downloads |
-    pub fn download_dir(&self) -> Option<&Path> { self.download_dir.as_ref().map(|p| p.as_path()) }
+    pub fn download_dir(&self) -> Option<&Path> { self.download_dir.as_deref() }
     /// Returns the path to the user's font directory.<br>
     /// |Platform | Value                                                | Example                        |
     /// | ------- | ---------------------------------------------------- | ------------------------------ |
     /// | Linux   | `$XDG_DATA_HOME`/fonts or `$HOME`/.local/share/fonts | /home/alice/.local/share/fonts |
     /// | macOS   | `$HOME`/Library/Fonts                                | /Users/Alice/Library/Fonts     |
     /// | Windows | –                                                    | –                              |
-    pub fn font_dir(&self) -> Option<&Path> { self.font_dir.as_ref().map(|p| p.as_path()) }
+    pub fn font_dir(&self) -> Option<&Path> { self.font_dir.as_deref() }
     /// Returns the path to the user's picture directory.<br>
     /// |Platform | Value                 | Example                 |
     /// | ------- | --------------------- | ----------------------- |
     /// | Linux   | `XDG_PICTURES_DIR`    | /home/alice/Pictures    |
     /// | macOS   | `$HOME`/Pictures      | /Users/Alice/Pictures   |
     /// | Windows | `{FOLDERID_Pictures}` | C:\Users\Alice\Pictures |
-    pub fn picture_dir(&self) -> Option<&Path> { self.picture_dir.as_ref().map(|p| p.as_path()) }
+    pub fn picture_dir(&self) -> Option<&Path> { self.picture_dir.as_deref() }
     /// Returns the path to the user's public directory.<br>
     /// |Platform | Value                 | Example             |
     /// | ------- | --------------------- | ------------------- |
     /// | Linux   | `XDG_PUBLICSHARE_DIR` | /home/alice/Public  |
     /// | macOS   | `$HOME`/Public        | /Users/Alice/Public |
     /// | Windows | `{FOLDERID_Public}`   | C:\Users\Public     |
-    pub fn public_dir(&self) -> Option<&Path> { self.public_dir.as_ref().map(|p| p.as_path()) }
+    pub fn public_dir(&self) -> Option<&Path> { self.public_dir.as_deref() }
     /// Returns the path to the user's template directory.<br>
     /// |Platform | Value                  | Example                                                    |
     /// | ------- | ---------------------- | ---------------------------------------------------------- |
     /// | Linux   | `XDG_TEMPLATES_DIR`    | /home/alice/Templates                                      |
     /// | macOS   | –                      | –                                                          |
     /// | Windows | `{FOLDERID_Templates}` | C:\Users\Alice\AppData\Roaming\Microsoft\Windows\Templates |
-    pub fn template_dir(&self) -> Option<&Path> { self.template_dir.as_ref().map(|p| p.as_path()) }
+    pub fn template_dir(&self) -> Option<&Path> { self.template_dir.as_deref() }
     /// Returns the path to the user's video directory.<br>
     /// |Platform | Value               | Example               |
     /// | ------- | ------------------- | --------------------- |
     /// | Linux   | `XDG_VIDEOS_DIR`    | /home/alice/Videos    |
     /// | macOS   | `$HOME`/Movies      | /Users/Alice/Movies   |
     /// | Windows | `{FOLDERID_Videos}` | C:\Users\Alice\Videos |
-    pub fn video_dir(&self) -> Option<&Path> { self.video_dir.as_ref().map(|p| p.as_path()) }
+    pub fn video_dir(&self) -> Option<&Path> { self.video_dir.as_deref() }
 }
 
 impl ProjectDirs {
@@ -423,7 +423,7 @@ impl ProjectDirs {
     /// | Linux   | `$XDG_RUNTIME_DIR`/`_project_path_` | /run/user/1001/barapp |
     /// | macOS   | –                                   | –                     |
     /// | Windows | –                                   | –                     |
-    pub fn runtime_dir(&self) -> Option<&Path> { self.runtime_dir.as_ref().map(|p| p.as_path()) }
+    pub fn runtime_dir(&self) -> Option<&Path> { self.runtime_dir.as_deref() }
     /// Returns the path to the project's state directory.
     ///
     /// The state directory contains data that should be retained between sessions (unlike the runtime
@@ -436,7 +436,7 @@ impl ProjectDirs {
     /// | Linux   | `$XDG_STATE_HOME`/`_project_path_` or `$HOME`/.local/state/`_project_path_` | /home/alice/.local/state/barapp |
     /// | macOS   | –                                                                           | –                               |
     /// | Windows | –                                                                           | –                               |
-    pub fn state_dir(&self) -> Option<&Path> { self.state_dir.as_ref().map(|p| p.as_path()) }
+    pub fn state_dir(&self) -> Option<&Path> { self.state_dir.as_deref() }
 }
 
 #[cfg(test)]

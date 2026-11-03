@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file
 
-[unreleased]: https://github.com/eugenesvk/directories-rs/compare/0.0.0...HEAD
+[unreleased]: https://github.com/eugenesvk/directories-rs/compare/6.0.1...HEAD
 ## [Unreleased]
 <!-- - ✨ __Added__ -->
   <!-- + new features -->
@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file
 <!-- - 🔒 __Security__ -->
   <!-- + vulnerabilities -->
 
+[6.0.1]: https://github.com/eugenesvk/directories-rs/releases/tag/6.0.1
+## [6.0.1]
 - ✨ __Added__
   + `cli` crate feature to use more common base dirs (e.g., `~/.config` even on Windows)
 - Δ __Changed__
@@ -26,6 +28,3 @@ All notable changes to this project will be documented in this file
   + `data_dir` to respect `XDG_DATA_HOME` on Win/Mac
     + `data_local_dir` follows XDG on Mac, but not Win
   + `executable_dir` to respect `XDG_BIN_HOME` on `cli`-featured Win/Mac
-
-[0.0.0]: https://github.com/eugenesvk/directories-rs/releases/tag/0.0.0
-## [0.0.0]

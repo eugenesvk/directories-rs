@@ -33,18 +33,11 @@ pub fn base_dirs() -> Option<BaseDirs> {
         let config_local_dir = data_local_dir.clone();
         let preference_dir   = config_dir    .clone();
 
-        let base_dirs = BaseDirs {
-            home_dir:         home_dir,
-            cache_dir:        cache_dir,
-            config_dir:       config_dir,
-            config_local_dir: config_local_dir,
-            data_dir:         data_dir,
-            data_local_dir:   data_local_dir,
+        let base_dirs = BaseDirs {home_dir, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir,
             executable_dir:   None,
             preference_dir:   preference_dir,
             runtime_dir:      None,
-            state_dir:        None
-        };
+            state_dir:        None  };
         Some(base_dirs)
     } else {
         None
@@ -98,17 +91,9 @@ pub fn project_dirs_from_path(project_path: PathBuf) -> Option<ProjectDirs> {
         let data_local_dir   =                                                                                    prj_data_local  .join("data"  );
         let preference_dir   = config_dir.clone();
 
-        let project_dirs = ProjectDirs {
-            project_path:     project_path,
-            cache_dir:        cache_dir,
-            config_dir:       config_dir,
-            config_local_dir: config_local_dir,
-            data_dir:         data_dir,
-            data_local_dir:   data_local_dir,
-            preference_dir:   preference_dir,
+        let project_dirs = ProjectDirs {project_path, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir, preference_dir,
             runtime_dir:      None,
-            state_dir:        None
-        };
+            state_dir:        None  };
         Some(project_dirs)
     } else {
         None

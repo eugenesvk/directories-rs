@@ -8,16 +8,6 @@ on:
     paths   : ['Cargo.*', 'src/**/*']
   workflow_dispatch:
     branches: ["main","dev"]
-    inputs:
-      logLevel:
-        description	: 'Log level'
-        required   	: true
-        default    	: 'warning'
-        type       	: choice
-        options    	:
-        - info
-        - warning
-        - debug
 env:
   CARGO_TERM_COLOR: always
   RUSTFLAGS       : "-Dwarnings"

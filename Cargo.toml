@@ -21,3 +21,6 @@ bencher = "0.1.5"
 [[bench]]
 name = "constructors"
 harness = false
+
+[features]
+cli = [] # use similar paths regardless of OS

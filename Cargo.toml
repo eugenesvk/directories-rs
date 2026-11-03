@@ -8,6 +8,7 @@ license     = "MIT OR Apache-2.0"
 repository  = "https://codeberg.org/dirs/directories-rs"
 maintenance = { status = "actively-developed" }
 keywords    = ["xdg", "basedir", "app_dirs", "path", "folder"]
+edition     = "2024"
 
 [dependencies]
 dirs-sys = "0.5.0"

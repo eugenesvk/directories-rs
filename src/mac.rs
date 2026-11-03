@@ -1,13 +1,13 @@
 extern crate dirs_sys;
 
-use std::env;
+use std::env::var_os;
 use std::path::PathBuf;
+
 
 use crate::BaseDirs;
 use crate::UserDirs;
 use crate::ProjectDirs;
 use crate::apply_attr;
-
 apply_attr!{#[cfg(    feature="cli") ]
 const d_cache: &str = ".cache"                     ;
 const d_cfg  : &str = ".config"                    ;
@@ -19,11 +19,11 @@ const d_data : &str = "Library/Application Support";}
 
 pub fn base_dirs() -> Option<BaseDirs> {
     if let Some(home_dir)    = dirs_sys::home_dir() {
-        let cache_dir        = env::var_os("XDG_CACHE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cache));
-        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cfg  ));
+        let cache_dir        = var_os("XDG_CACHE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cache));
+        let config_dir       = var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cfg  ));
+        let data_dir         = var_os("XDG_DATA_HOME"  ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_data ));
         let config_local_dir = config_dir.clone();
-        let data_dir         = env::var_os("XDG_DATA_HOME"  ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_data ));
-        let data_local_dir   = data_dir.clone();
+        let data_local_dir   = data_dir  .clone();
         let preference_dir   = home_dir.join("Library/Preferences");
 
         let base_dirs = BaseDirs {home_dir, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir,
@@ -32,9 +32,7 @@ pub fn base_dirs() -> Option<BaseDirs> {
             runtime_dir:      None,
             state_dir:        None  };
         Some(base_dirs)
-    } else {
-        None
-    }
+    } else { None }
 }
 
 pub fn user_dirs() -> Option<UserDirs> {
@@ -60,27 +58,23 @@ pub fn user_dirs() -> Option<UserDirs> {
             video_dir:    Some(video_dir)
         };
         Some(user_dirs)
-    } else {
-        None
-    }
+    } else { None }
 }
 
 pub fn project_dirs_from_path(project_path: PathBuf) -> Option<ProjectDirs> {
     if let Some(home_dir)    = dirs_sys::home_dir() {
-        let cache_dir        = env::var_os("XDG_CACHE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cache)).join(&project_path);
-        let config_dir       = env::var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cfg  )).join(&project_path);
+        let cache_dir        = var_os("XDG_CACHE_HOME" ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cache)).join(&project_path);
+        let config_dir       = var_os("XDG_CONFIG_HOME").and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_cfg  )).join(&project_path);
+        let data_dir         = var_os("XDG_DATA_HOME"  ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_data )).join(&project_path);
         let config_local_dir = config_dir.clone();
-        let data_dir         = env::var_os("XDG_DATA_HOME"  ).and_then(dirs_sys::is_absolute_path).unwrap_or_else(|| home_dir.join(d_data )).join(&project_path);
-        let data_local_dir   = data_dir.clone();
+        let data_local_dir   = data_dir  .clone();
         let preference_dir   = home_dir.join("Library/Preferences").join(&project_path);
 
         let project_dirs = ProjectDirs {project_path, cache_dir, config_dir,config_local_dir, data_dir,data_local_dir, preference_dir,
             runtime_dir:      None,
             state_dir:        None  };
         Some(project_dirs)
-    } else {
-        None
-    }
+    } else { None }
 }
 
 pub fn project_dirs_from(qualifier: &str, organization: &str, application: &str) -> Option<ProjectDirs> {

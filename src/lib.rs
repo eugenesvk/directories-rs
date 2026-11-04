@@ -219,7 +219,6 @@ impl BaseDirs {
     /// | macOS   | `$XDG_DATA_HOME` or `$HOME`/Library/Application Support | /Users/Alice/Library/Application Support |
     /// | ↑ `cli` | `$XDG_DATA_HOME` or `$HOME`/.local/share                | /Users/Alice/.local/share                |
     /// | Windows | `{FOLDERID_LocalAppData}`                               | C:\\Users\\Alice\\AppData\\Local         |
-    /// | ↑ `cli` | `$XDG_DATA_HOME` or `{FOLDERID_Profile}`\\.local\\share | C:\\Users\\Alice\\.local\\share          |
     pub fn data_local_dir(&self) -> &Path { self.data_local_dir.as_path() }
     /// Returns the path to the user's executable directory.<br>
     /// |Platform | Value                                                            | Example                       |

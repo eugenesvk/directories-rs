@@ -1,6 +1,6 @@
 #![cfg_attr(not(debug_assertions),allow(non_snake_case,non_upper_case_globals,non_camel_case_types,uncommon_codepoints))]
 #![cfg_attr(    debug_assertions ,allow(non_snake_case,non_upper_case_globals,non_camel_case_types,uncommon_codepoints,unused_imports,unused_mut,unused_variables,dead_code,unused_assignments,unused_macros))]
-//! The _directories_ crate is
+//! The _directories_xdg_ crate is
 //!
 //! - a tiny library with a minimal API (3 structs, 4 factory functions, getters)
 //! - that provides the platform-specific, user-accessible locations
@@ -54,7 +54,7 @@ use lin as sys;
 /// All examples on this page are computed with a user named _Alice_.
 ///
 /// ```
-/// use directories::BaseDirs;
+/// use directories_xdg::BaseDirs;
 /// if let Some(base_dirs) = BaseDirs::new() {
 ///     base_dirs.config_dir();
 ///     // Linux:   /home/alice/.config
@@ -86,7 +86,7 @@ pub struct BaseDirs {
 /// All examples on this page are computed with a user named _Alice_.
 ///
 /// ```
-/// use directories::UserDirs;
+/// use directories_xdg::UserDirs;
 /// if let Some(user_dirs) = UserDirs::new() {
 ///     user_dirs.audio_dir();
 ///     // Linux:   /home/alice/Music
@@ -121,7 +121,7 @@ pub struct UserDirs {
 /// and a `ProjectDirs` struct created with `ProjectDirs::from("com", "Foo Corp", "Bar App")`.
 ///
 /// ```
-/// use directories::ProjectDirs;
+/// use directories_xdg::ProjectDirs;
 /// if let Some(proj_dirs) = ProjectDirs::from("com", "Foo Corp",  "Bar App") {
 ///     proj_dirs.config_dir();
 ///     // Linux:   /home/alice/.config/barapp

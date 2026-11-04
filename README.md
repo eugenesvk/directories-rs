@@ -1,13 +1,13 @@
-[![crates.io](https://img.shields.io/crates/v/directories.svg?style=for-the-badge)](https://crates.io/crates/directories)
-[![API documentation](https://img.shields.io/docsrs/directories/latest?style=for-the-badge)](https://docs.rs/directories/)
+[![crates.io](https://img.shields.io/crates/v/directories_xdg.svg?style=for-the-badge)](https://crates.io/crates/directories_xdg)
+[![API documentation](https://img.shields.io/docsrs/directories_xdg/latest?style=for-the-badge)](https://docs.rs/directories_xdg/)
 ![actively developed](https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg?style=for-the-badge)
 ![License: MIT/Apache-2.0](https://img.shields.io/badge/license-MIT%2FApache--2.0-orange.svg?style=for-the-badge)
 
-# `directories`
+# `directories_xdg`
 
 ## Introduction
 
-This fork fixes one major issue with the original project of [ignoring XDG env vars](https://github.com/dirs-dev/directories-rs/issues/47) on Windows and macOS platforms by respecing them for [BaseDirs](./#BaseDirs) and [ProjectDirs](./#ProjectDirs) (but not [UserDirs](./#UserDirs)). It also adds a `cli` feature to also change the default paths to a common cross-platform fallback, e.g., `~/.config`[^1]
+This fork fixes one major issue with the original project of [ignoring XDG env vars](https://github.com/dirs-dev/directories-rs/issues/47) on Windows and macOS platforms by respecting them for [BaseDirs](./#BaseDirs) and [ProjectDirs](./#ProjectDirs) (but not [UserDirs](./#UserDirs)). It also adds a `cli` feature that changes the default paths to a common cross-platform fallback, e.g., `~/.config`[^1] for `config_dir`
 
 - a tiny mid-level library with a minimal API
 - that provides the platform-specific, user-accessible locations
@@ -49,8 +49,8 @@ If you are upgrading from version 2, please read the [section on breaking change
 Library run by user Alice:
 
 ```rust
-extern crate directories;
-use directories::{BaseDirs, UserDirs, ProjectDirs};
+extern crate directories_xdg;
+use directories_xdg::{BaseDirs, UserDirs, ProjectDirs};
 
 if let Some(proj_dirs) = ProjectDirs::from("com", "Foo Corp",  "Bar App") {
     proj_dirs.config_dir();
@@ -76,7 +76,7 @@ if let Some(user_dirs) = UserDirs::new() {
 
 ## Design Goals
 
-- The _directories_ library is designed to provide an accurate snapshot of the system's state at
+- The _directories_xdg_ library is designed to provide an accurate snapshot of the system's state at
   the point of invocation of `BaseDirs::new`, `UserDirs::new` or `ProjectDirs::from`.<br/>
   Subsequent changes to the state of the system are not reflected in values created prior to such a change.
 - This library does not create directories or check for their existence. The library only provides

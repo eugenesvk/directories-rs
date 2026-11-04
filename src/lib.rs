@@ -422,7 +422,7 @@ impl ProjectDirs {
     /// | ------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
     /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_`                      | /home/alice/.config/barapp                                    |
     /// | macOS   | `$HOME`/Library/Preferences/`_project_path_`                                                 | /Users/Alice/Library/Preferences/com.Foo-Corp.Bar-App         |
-    /// | Windows | `$XDG_CONFIG_HOME`/`_project_path_` or `{FOLDERID_RoamingAppData}`\\`_project_path_`\\config | C:\\Users\\Alice\\AppData\\Roaming\\Foo Corp\\Bar App\\config |
+    /// | Windows | `$XDG_CONFIG_HOME`\\`_project_path_` or `{FOLDERID_RoamingAppData}`\\`_project_path_`\\config | C:\\Users\\Alice\\AppData\\Roaming\\Foo Corp\\Bar App\\config |
     pub fn preference_dir(&self) -> &Path { self.preference_dir.as_path() }
     /// Returns the path to the project's runtime directory.
     ///

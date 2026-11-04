@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file
 
-[unreleased]: https://github.com/eugenesvk/directories-rs/compare/6.0.1...HEAD
+[unreleased]: https://github.com/eugenesvk/directories-rs/compare/6.0.11...HEAD
 ## [Unreleased]
 <!-- - ✨ __Added__ -->
   <!-- + new features -->
@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file
 <!-- - 🔒 __Security__ -->
   <!-- + vulnerabilities -->
 
+[6.0.11]: https://github.com/eugenesvk/directories-rs/releases/tag/6.0.11
+## [6.0.11]
 - Δ __Changed__
   + crate name to `directories_xdg` from `directories`
 

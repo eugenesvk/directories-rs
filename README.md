@@ -106,18 +106,23 @@ that have been defined according to the conventions of the operating system the 
 
 If you want to compute the location of cache, config or data directories for your own application or project, use `ProjectDirs` instead.
 
-| Function name      | Value on Linux                                           | Value on Windows                                        | Value on macOS                                            |
-|--------------------|----------------------------------------------------------| ------------------------------------------------------- | --------------------------------------------------------- |
-| `home_dir`         | `$HOME`                                                  | `{FOLDERID_Profile}`                                    | `$HOME`                                                   |
-| `cache_dir`        | `$XDG_CACHE_HOME`        or `$HOME`/.cache               | `$XDG_CACHE_HOME`        or `{FOLDERID_LocalAppData}`   | `$XDG_CACHE_HOME`  or `$HOME`/Library/Caches              |
-| `config_dir`       | `$XDG_CONFIG_HOME`       or `$HOME`/.config              | `$XDG_CONFIG_HOME`       or `{FOLDERID_RoamingAppData}` | `$XDG_CONFIG_HOME` or `$HOME`/Library/Application Support |
-| `config_local_dir` | `$XDG_CONFIG_HOME`       or `$HOME`/.config              | `{FOLDERID_LocalAppData}`                               | `$XDG_CONFIG_HOME` or `$HOME`/Library/Application Support |
-| `data_dir`         | `$XDG_DATA_HOME`         or `$HOME`/.local/share         | `$XDG_DATA_HOME`         or `{FOLDERID_RoamingAppData}` | `$XDG_DATA_HOME`   or `$HOME`/Library/Application Support |
-| `data_local_dir`   | `$XDG_DATA_HOME`         or `$HOME`/.local/share         | `{FOLDERID_LocalAppData}`                               | `$XDG_DATA_HOME`   or `$HOME`/Library/Application Support |
-| `executable_dir`   | `Some($XDG_BIN_HOME)`    or `Some($HOME`/.local/bin`)`   | `None`                                                  | `None`                                                    |
-| `preference_dir`   | `$XDG_CONFIG_HOME`       or `$HOME`/.config              | `$XDG_CONFIG_HOME`       or `{FOLDERID_RoamingAppData}` | `$HOME`/Library/Preferences                               |
-| `runtime_dir`      | `Some($XDG_RUNTIME_DIR)` or `None`                       | `None`                                                  | `None`                                                    |
-| `state_dir`        | `Some($XDG_STATE_HOME)`  or `Some($HOME`/.local/state`)` | `None`                                                  | `None`                                                    |
+| Function name      | Value on Linux                                           | Value on Windows                                                      | Value on macOS                                            |
+|------------------- |----------------------------------------------------------| --------------------------------------------------------------------- | --------------------------------------------------------- |
+| `home_dir`         | `$HOME`                                                  | `{FOLDERID_Profile}`                                                  | `$HOME`                                                   |
+| `cache_dir`        | `$XDG_CACHE_HOME`        or `$HOME`/.cache               | `$XDG_CACHE_HOME`        or `{FOLDERID_LocalAppData}`                 | `$XDG_CACHE_HOME`  or `$HOME`/Library/Caches              |
+| ↑ `cli` feat       | ↑ =                                                      | `$XDG_CACHE_HOME`        or `{FOLDERID_Profile}`\\.cache              | `$XDG_CACHE_HOME`  or `$HOME`/.cache                      |
+| `config_dir`       | `$XDG_CONFIG_HOME`       or `$HOME`/.config              | `$XDG_CONFIG_HOME`       or `{FOLDERID_RoamingAppData}`               | `$XDG_CONFIG_HOME` or `$HOME`/Library/Application Support |
+| ↑ `cli` feat       | ↑ =                                                      | `$XDG_CONFIG_HOME`       or `{FOLDERID_Profile}`\\.config             | `$XDG_CONFIG_HOME` or `$HOME`/.config                     |
+| `config_local_dir` | `$XDG_CONFIG_HOME`       or `$HOME`/.config              | `{FOLDERID_LocalAppData}`                                             | `$XDG_CONFIG_HOME` or `$HOME`/Library/Application Support |
+| `data_dir`         | `$XDG_DATA_HOME`         or `$HOME`/.local/share         | `$XDG_DATA_HOME`         or `{FOLDERID_RoamingAppData}`               | `$XDG_DATA_HOME`   or `$HOME`/Library/Application Support |
+| ↑ `cli` feat       | ↑ =                                                      | `$XDG_DATA_HOME`         or `{FOLDERID_Profile}`\\.local\\share       | `$XDG_DATA_HOME`   or `$HOME`/.local/share                |
+| `data_local_dir`   | `$XDG_DATA_HOME`         or `$HOME`/.local/share         | `{FOLDERID_LocalAppData}`                                             | `$XDG_DATA_HOME`   or `$HOME`/Library/Application Support |
+| ↑ `cli` feat       | ↑ =                                                      | ↑ =                                                                   | `$XDG_DATA_HOME`   or `$HOME`/.local/share                |
+| `executable_dir`   | `Some($XDG_BIN_HOME)`    or `Some($HOME`/.local/bin`)`   | `None`                                                                | `None`                                                    |
+| ↑ `cli` feat       | ↑ =                                                      | `Some($XDG_BIN_HOME)`    or `Some({FOLDERID_Profile}`\\.local\\bin`)` | `Some($XDG_BIN_HOME)` or `Some($HOME`/.local/bin`)`       |
+| `preference_dir`   | `$XDG_CONFIG_HOME`       or `$HOME`/.config              | `$XDG_CONFIG_HOME`       or `{FOLDERID_RoamingAppData}`               | `$HOME`/Library/Preferences                               |
+| `runtime_dir`      | `Some($XDG_RUNTIME_DIR)` or `None`                       | `None`                                                                | `None`                                                    |
+| `state_dir`        | `Some($XDG_STATE_HOME)`  or `Some($HOME`/.local/state`)` | `None`                                                                | `None`                                                    |
 
 ### `UserDirs`
 

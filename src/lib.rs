@@ -347,9 +347,7 @@ impl ProjectDirs {
     /// not follow operating system standards on at least two of three platforms.
     /// 
     /// Use [`ProjectDirs::from`] instead.
-    pub fn from_path(project_path: PathBuf) -> Option<ProjectDirs> {
-        sys::project_dirs_from_path(project_path)
-    }
+    pub fn from_path(project_path: PathBuf) -> Option<ProjectDirs> { sys::project_dirs_from_path(project_path) }
     /// Creates a `ProjectDirs` struct from values describing the project.
     ///
     /// The returned value depends on the operating system and is either
@@ -374,8 +372,7 @@ impl ProjectDirs {
     ///
     /// [`BaseDirs::home_dir`]: struct.BaseDirs.html#method.home_dir
     pub fn from(qualifier: &str, organization: &str, application: &str) -> Option<ProjectDirs> {
-        sys::project_dirs_from(qualifier, organization, application)
-    }
+        sys::project_dirs_from(qualifier, organization, application) }
     /// Returns the project path fragment used to compute the project's cache/config/data directories.
     /// The value is derived from the `ProjectDirs::from` call and is platform-dependent.
     pub fn project_path(&self) -> &Path { self.project_path.as_path() }

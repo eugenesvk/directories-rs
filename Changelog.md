@@ -16,6 +16,9 @@ All notable changes to this project will be documented in this file
 <!-- - 🔒 __Security__ -->
   <!-- + vulnerabilities -->
 
+- Δ __Changed__
+  + crate name to `directories_xdg` from `directories`
+
 [6.0.1]: https://github.com/eugenesvk/directories-rs/releases/tag/6.0.1
 ## [6.0.1]
 - ✨ __Added__

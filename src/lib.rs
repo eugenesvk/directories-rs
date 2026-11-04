@@ -377,18 +377,22 @@ impl ProjectDirs {
     /// The value is derived from the `ProjectDirs::from` call and is platform-dependent.
     pub fn project_path(&self) -> &Path { self.project_path.as_path() }
     /// Returns the path to the project's cache directory.<br>
-    /// |Platform | Value                                                                                    | Example                                                    |
-    /// | ------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-    /// | Linux   | `$XDG_CACHE_HOME`/`_project_path_` or `$HOME`/.cache/`_project_path_`                    | /home/alice/.cache/barapp                                  |
-    /// | macOS   | `$XDG_CACHE_HOME`/`_project_path_` or `$HOME`/Library/Caches/`_project_path_`            | /Users/Alice/Library/Caches/com.Foo-Corp.Bar-App           |
-    /// | Windows | `$XDG_CACHE_HOME`/`_project_path_` or `{FOLDERID_LocalAppData}`\\`_project_path_`\\cache | C:\\Users\\Alice\\AppData\\Local\\Foo Corp\\Bar App\\cache |
+    /// |Platform | Value                                                                                     | Example                                                    |
+    /// | ------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+    /// | Linux   | `$XDG_CACHE_HOME`/`_project_path_` or `$HOME`/.cache/`_project_path_`                     | /home/alice/.cache/barapp                                  |
+    /// | macOS   | `$XDG_CACHE_HOME`/`_project_path_` or `$HOME`/Library/Caches/`_project_path_`             | /Users/Alice/Library/Caches/com.Foo-Corp.Bar-App           |
+    /// | ↑ `cli` | `$XDG_CACHE_HOME`/`_project_path_` or `$HOME`/.cache/`_project_path_`                     | /Users/Alice/.cache/barapp                                 |
+    /// | Windows | `$XDG_CACHE_HOME`\\`_project_path_` or `{FOLDERID_LocalAppData}`\\`_project_path_`\\cache | C:\\Users\\Alice\\AppData\\Local\\Foo Corp\\Bar App\\cache |
+    /// | ↑ `cli` | `$XDG_CACHE_HOME`\\`_project_path_` or `{FOLDERID_Profile}`\\.cache\\`_project_path_`     | C:\\Users\\Alice\\.cache\\barapp                           |
     pub fn cache_dir(&self) -> &Path { self.cache_dir.as_path() }
     /// Returns the path to the project's config directory.<br>
-    /// |Platform | Value                                                                                        | Example                                                        |
-    /// | ------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-    /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_`                      | /home/alice/.config/barapp                                     |
-    /// | macOS   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/Library/Application Support/`_project_path_`  | /Users/Alice/Library/Application Support/com.Foo-Corp.Bar-App  |
-    /// | Windows | `$XDG_CONFIG_HOME`/`_project_path_` or `{FOLDERID_RoamingAppData}`\\`_project_path_`\\config | C:\\Users\\Alice\\AppData\\Roaming\\Foo Corp\\Bar App\\config  |
+    /// |Platform | Value                                                                                         | Example                                                        |
+    /// | ------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+    /// | Linux   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_`                       | /home/alice/.config/barapp                                     |
+    /// | macOS   | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/Library/Application Support/`_project_path_`   | /Users/Alice/Library/Application Support/com.Foo-Corp.Bar-App  |
+    /// | ↑ `cli` | `$XDG_CONFIG_HOME`/`_project_path_` or `$HOME`/.config/`_project_path_`                       | /Users/Alice/.config/barapp                                    |
+    /// | Windows | `$XDG_CONFIG_HOME`\\`_project_path_` or `{FOLDERID_RoamingAppData}`\\`_project_path_`\\config | C:\\Users\\Alice\\AppData\\Roaming\\Foo Corp\\Bar App\\config  |
+    /// | ↑ `cli` | `$XDG_CONFIG_HOME`\\`_project_path_` or `{FOLDERID_Profile}`\\.config\\`_project_path_`       | C:\\Users\\Alice\\.config\\barapp                              |
     pub fn config_dir(&self) -> &Path { self.config_dir.as_path() }
     /// Returns the path to the project's local config directory.<br>
     /// |Platform | Value                                                                                       | Example                                                        |
@@ -398,11 +402,13 @@ impl ProjectDirs {
     /// | Windows | `{FOLDERID_LocalAppData}`\\`_project_path_`\\config                                         | C:\\Users\\Alice\\AppData\\Local\\Foo Corp\\Bar App\\config    |
     pub fn config_local_dir(&self) -> &Path { self.config_local_dir.as_path() }
     /// Returns the path to the project's data directory.<br>
-    /// |Platform | Value                                                                                     | Example                                                       |
-    /// | ------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-    /// | Linux   | `$XDG_DATA_HOME`/`_project_path_` or `$HOME`/.local/share/`_project_path_`                | /home/alice/.local/share/barapp                               |
-    /// | macOS   | `$XDG_DATA_HOME`/`_project_path_` or `$HOME`/Library/Application Support/`_project_path_` | /Users/Alice/Library/Application Support/com.Foo-Corp.Bar-App |
-    /// | Windows | `$XDG_DATA_HOME`/`_project_path_` or `{FOLDERID_RoamingAppData}`\\`_project_path_`\\data  | C:\\Users\\Alice\\AppData\\Roaming\\Foo Corp\\Bar App\\data   |
+    /// |Platform | Value                                                                                       | Example                                                       |
+    /// | ------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+    /// | Linux   | `$XDG_DATA_HOME`/`_project_path_` or `$HOME`/.local/share/`_project_path_`                  | /home/alice/.local/share/barapp                               |
+    /// | macOS   | `$XDG_DATA_HOME`/`_project_path_` or `$HOME`/Library/Application Support/`_project_path_`   | /Users/Alice/Library/Application Support/com.Foo-Corp.Bar-App |
+    /// | ↑ `cli` | `$XDG_DATA_HOME`/`_project_path_` or `$HOME`/.local/share/`_project_path_`                  | /Users/Alice/.local/share/barapp                              |
+    /// | Windows | `$XDG_DATA_HOME`\\`_project_path_` or `{FOLDERID_RoamingAppData}`\\`_project_path_`\\data   | C:\\Users\\Alice\\AppData\\Roaming\\Foo Corp\\Bar App\\data   |
+    /// | ↑ `cli` | `$XDG_DATA_HOME`\\`_project_path_` or `{FOLDERID_Profile}`\\.local\\share\\`_project_path_` | C:\\Users\\Alice\\.local\\share\\barapp                       |
     pub fn data_dir(&self) -> &Path { self.data_dir.as_path() }
     /// Returns the path to the project's local data directory.<br>
     /// |Platform | Value                                                                                     | Example                                                       |

@@ -13,7 +13,7 @@ jobs:
       image  : rust:latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1 26-07
+        uses: actions/checkout@v7.0.1 #26-07
         with:
           persist-credentials: false
       - run : cargo install toml-cli
